@@ -1,6 +1,6 @@
 {
   "name": "@jeswr/test-package",
-  "version": "1.0.6",
+  "version": "1.0.7-beta.0",
   "description": "",
   "main": "index.js",
   "scripts": {
