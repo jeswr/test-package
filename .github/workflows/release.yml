@@ -15,12 +15,17 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "20.x"
-          registry-url: "https://registry.npmjs.org/"
+          registry-url: "https://registry.npmjs.org"
+          cache: "npm"
       - run: npm ci
       - if: ${{ contains(github.ref_name, 'beta') }}
-        run: npm publish --tag beta
+        run: npm publish --access public --tag beta
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - if: ${{ contains(github.ref_name, 'alpha') }}
-        run: npm publish --tag alpha
+        run: npm publish --access public --tag alpha
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - if: ${{ !contains(github.ref_name, 'alpha') && !contains(github.ref_name, 'beta') }}
         run: npm publish --access public
         env:
