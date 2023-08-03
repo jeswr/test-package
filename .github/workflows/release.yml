@@ -19,9 +19,9 @@ jobs:
           cache: "npm"
       - run: npm ci
       - if: ${{ contains(github.ref_name, 'beta') }}
-        run: npm publish --access public --tag beta
+        run: npm publish --tag beta
       - if: ${{ contains(github.ref_name, 'alpha') }}
-        run: npm publish --access public --tag alpha
+        run: npm publish --tag alpha
       - if: ${{ !contains(github.ref_name, 'alpha') && !contains(github.ref_name, 'beta') }}
         run: npm publish --access public
         env:
